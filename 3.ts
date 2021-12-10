@@ -53,7 +53,7 @@ function isValid(letter: string) {
   const stackKeys = new StackKeys();
   const letterCleaned = clearLetter(letter);
   
-  for(let character of letterCleaned.split('')) {
+  for(let character of letterCleaned) {
     if (stackKeys.isOpen(character)) {
       stackKeys.push(character);
     } else {
@@ -68,6 +68,6 @@ function isValid(letter: string) {
   return stackKeys.length() === 0;
 }
 
-const letter = 'peluche (bici [coche]) bici coche balón';
+const letter = 'peluche (bici [coche) bici coche balón';
 
 console.log(isValid(letter));
