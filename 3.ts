@@ -2,7 +2,7 @@
 class StackKeys {
   private keys: string[];
   private openKey: string[] = ['(', '[', '{'];
-  private keyMap: Record<string, string> = { '(': ')', '[': '[', '{': '}' };
+  private keyMap: Record<string, string> = { '(': ')', '[': ']', '{': '}' };
 
   constructor() {
     this.keys = [];
@@ -16,6 +16,10 @@ class StackKeys {
     this.keys.push(value);
   }
 
+  public list(): string[] {
+    return this.keys;
+  }
+
   public pop(): string {
     return this.keys.pop();
   }
@@ -25,25 +29,37 @@ class StackKeys {
   }
 
   public verifyKeyIsClosed(current: string, top: string) {
-    return this.keyMap[current] === top;
+    return this.keyMap[top] === current;
   }
 
-  public isKey(character: string) {
+  static isKey(character: string) {
     return ['(',')','[',']','{','}'].includes(character);
   }
 }
 
+function clearLetter(letter: string): string {
+  let letterFormated: string = "";
+  
+  for (let character of letter) {
+    if(StackKeys.isKey(character)) {
+      letterFormated = letterFormated + character;
+    }
+  }
+  
+  return letterFormated;
+}
+
 function isValid(letter: string) {
   const stackKeys = new StackKeys();
+  const letterCleaned = clearLetter(letter);
   
-  for(let character of letter.split('')) {
+  for(let character of letterCleaned.split('')) {
     if (stackKeys.isOpen(character)) {
       stackKeys.push(character);
     } else {
       const top = stackKeys.pop();
       const closes = stackKeys.verifyKeyIsClosed(character, top);
-
-      if (!closes && stackKeys.isKey(character)) {
+      if (!closes) {
         return false
       };
     }
@@ -52,6 +68,6 @@ function isValid(letter: string) {
   return stackKeys.length() === 0;
 }
 
-const letter = 'peluche (bici [coche) bici coche balón';
+const letter = 'peluche (bici [coche]) bici coche balón';
 
 console.log(isValid(letter));
