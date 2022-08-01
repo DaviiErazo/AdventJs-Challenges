@@ -13,7 +13,6 @@ function getCoins(change) {
   }
   
   return results;
-
 }
 
 getCoins(51) // [1, 0, 0, 0, 0, 1] -> una moneda de 1 céntimo y otra de 50 céntimos
