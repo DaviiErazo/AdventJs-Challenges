@@ -1,12 +1,9 @@
-const hasNotUps = (position, maxPositions) => {
-  return position != 0 && maxPositions.position == 0;
-}
+const hasNotUps = (position, maxPositions) => position != 0 && maxPositions.position == 0;
 const nextValuesIsEqual = (nextHeight, height) => nextHeight == height;
 const hasDowns = (nextHeight, height) => nextHeight < height;
 
 function checkSledJump(heights) {
-  // ¡No olvides compartir tu solución en redes!
-  let max = { position: 0, value: 0 };
+  const max = { position: 0, value: 0 };
   let downs = false;
   
   for (let i=0; i<heights.length; i++) {
@@ -17,8 +14,8 @@ function checkSledJump(heights) {
     if (nextValuesIsEqual(nextHeight, height)) return false;
     if (hasDowns(nextHeight, height)) downs = true;
     
-    if (nextHeight > height && i - max.position == 0) {
-			if () {
+    if (nextHeight > height) {
+			if ( i - max.position == 0) {
         max.position = i + 1;
         max.value = nextHeight;
       } else {
