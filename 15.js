@@ -22,7 +22,7 @@ function checkSledJump(heights) {
         return false;
       }
     }
-  }3
+  }
   return downs
 }
 
