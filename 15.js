@@ -9,7 +9,7 @@ function checkSledJump(heights) {
   for (let i=0; i<heights.length; i++) {
     const height = heights[i];
     const nextHeight = heights[i + 1];
-    
+
 		if (hasNotUps(i, max)) return false;
     if (nextValuesIsEqual(nextHeight, height)) return false;
     if (hasDowns(nextHeight, height)) downs = true;
@@ -22,7 +22,7 @@ function checkSledJump(heights) {
         return false;
       }
     }
-  }
+  }3
   return downs
 }
 
