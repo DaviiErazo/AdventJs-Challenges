@@ -1,10 +1,8 @@
 const fillReindeerMap = (ids) => {
-	let map = {};
-  for (let i = 0; i < ids.length; i++) {
-    const meindeer = ids[i];
-    map[meindeer] = meindeer;
-  }
-  return map;
+  return ids.reduce((meindeerMap, meindeer) => {
+    meindeerMap[meindeer] = meindeer;
+    return meindeerMap
+  }, {});
 }
 
 function missingReindeer(ids) {
