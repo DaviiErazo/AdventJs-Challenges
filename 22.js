@@ -2,14 +2,8 @@ function countDecorations(bigTree) {
   let count = 0;
   if (!bigTree) return 0;
   
-  const { value, left, right } = bigTree;
-  count = value;
-  
-  if (!left && !right) {
-    return count;
-  }
-  
-  count += countDecorations(left) + countDecorations(right);
+  const { value, left, right } = bigTree;  
+  count += value + countDecorations(left) + countDecorations(right);
 
   return count;
 }
